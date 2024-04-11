@@ -39,7 +39,7 @@ class PostUpdateView(PostsEditMixin, LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         post = get_object_or_404(Post, pk=self.kwargs['post_id'])
         if self.request.user != post.author:
-            return redirect('blog:post_detail', pk=self.kwargs['post_id'])
+            return redirect('blog:post_detail', post_id=self.kwargs['post_id'])
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
